@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Meet SwiftData">
+<meta property="og:url" content="http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/index.html">
+<meta property="og:site_name" content="sakuragi&#39;s blog">
+<meta property="og:description" content="SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-03T04:11:16.000Z">
+<meta property="article:modified_time" content="2024-01-08T03:35:27.184Z">
+<meta property="article:author" content="sakuragi">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Meet SwiftData</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&text=Meet SwiftData"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&is_video=false&description=Meet SwiftData"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Meet SwiftData&body=Check out this article: http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&name=Meet SwiftData&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&t=Meet SwiftData"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Meet SwiftData
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">sakuragi</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-03T04:11:16.000Z" class="dt-published" itemprop="datePublished">2024-01-03</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macro system to create a seamless API experience.</p>
+<p>SwiftData 是一款强化现代 Swift 应用的强大数据建模和管理框架。它与 SwiftUI 类似，完全基于代码实现，不依赖任何外部文件格式，并利用 Swift 的全新宏系统，带来了流畅的 API 使用体验。</p>
+<p>SwiftData relies on the expressivity provided by the new Swift language macros in order to create a seamless API experience. And it is naturally integrated with SwiftUI and works with other platform features, like CloudKit and Widgets. In this session, we’ll look at the new @Model macro and its power to model your data directly from Swift code, I’ll introduce you to fetching and modifying your data with SwiftData, then I’ll finish up by providing you with an overview of some of the other platform frameworks that work seamlessly with SwiftData.</p>
+<p>SwiftData 的强大之处在于它利用 Swift 新引入的宏功能，实现了高度表达性和无缝集成的 API。它不仅与 SwiftUI 完美融合，还支持 CloudKit、Widgets 等其他平台特性。在本环节中，我会详细介绍新的 @Model 宏及其如何使你直接通过 Swift 代码进行数据建模的能力。接下来，我会带你了解如何使用 SwiftData 来获取和修改数据，并最后简要介绍一些与 SwiftData 无缝配合的其他平台框架。</p>
+<p>Now we’ll look more into @Model.</p>
+<p>下面，让我们深入了解一下 @Model 宏的魅力吧。</p>
+<p>@Model is a new Swift macro that helps to define your model’s schema from your Swift code. SwiftData schemas are normal Swift code, but when needed, you can annotate your properties with additional metadata. Using this schema, SwiftData adds powerful functionality to your model objects. It’s as simple as decorating your class with @Model, and the schema is generated. Models in SwiftData are the source of truth for your application’s schema and drive the persistence experience. Part of this experience will transform the class’ stored properties and turns them into persisted properties. Adding @Model to your model opens up a world of possibilities. SwiftData natively adapts your value type properties to be used as attributes right away. These properties include basic value types, like string, int, and float. They can also include more complex value types, such as structs, enums, and codable types too, including collections. SwiftData models reference types as relationships. You can create links between your model types with relationships and collections of model types. @Model will modify all the stored properties on your type. You can influence how SwiftData builds your schema using metadata on your properties. With @Attribute, you can add uniqueness constraints. You can use @Relationship to control the choice of inverses and specify delete propagation rules. These change the behaviors of links between models. You can tell SwiftData not to include specific properties with the Transient macro. Here is our previous Trip example. I’ll adjust SwiftData’s schema generation by adding metadata to our stored properties.</p>
+<p>@Model 是 Swift 新推出的一个宏，它能帮你直接在 Swift 代码中定义模型的结构。SwiftData 的结构本质上就是标准的 Swift 代码，不过你可以在必要时通过附加元数据来增强属性。借助这种结构，SwiftData 能为你的模型对象增添诸多强大功能。你只需简单地在类上使用 @Model 标记，模型结构就自动生成了。SwiftData 中的模型成为了应用程序结构的核心，也是驱动数据持久化的关键。其中的一部分功能会将类的存储属性转化为持久化属性。为模型添加 @Model 就意味着开启了无限可能。SwiftData 能自然地适应你的值类型属性，使它们立即成为可用属性。这些属性包括基础值类型如字符串（string）、整数（int）、浮点数（float），甚至还包括结构体、枚举和可编码类型，以及它们的集合。SwiftData 将模型中的引用类型视为关联关系。你可以通过关联关系和模型类型的集合来建立模型间的连接。@Model 会对你的类型中所有存储属性进行修改。你可以通过在属性上添加元数据来指导 SwiftData 如何构建模型结构。例如，使用 @Attribute 可以增加唯一性约束，而 @Relationship 则允许你控制反向关系的选择和删除规则的设定，从而改变模型间链接的行为。你还可以通过 Transient 宏来指示 SwiftData 忽略特定属性。以下是我们之前的 Trip 示例，我将通过给存储属性添加元数据来调整 SwiftData 的结构生成方式。</p>
+<p>I can add @Attribute to name and specify that it should be unique. I can also decorate our bucket list relationship with @Relationship and instruct Swift Data to delete all the related bucket list items whenever this trip is deleted. To learn more about SwiftData modeling, check out the “Model your schema with SwiftData” session. Now I’ll cover how you can work with your model types and the two key objects you’ll use to drive your operations: SwiftData’s ModelContainer and ModelContext. The model container provides the persistent backend for your model types. You can use the default settings just by specifying your schema, or you can customize it with configurations and migration options. You can create a model container just by specifying the list of model types you want stored. If you want to customize your container further, you can use a configuration to change your URL, CloudKit and group container identifiers, and migration options With your container set up, you’re ready to fetch and save data with model contexts. You can also use SwiftUI’s view and scene modifiers to set up container and have it automatically established in the view’s environment. Model contexts observe all the changes to your models and provide many of the actions to operate on them. They are your interface to tracking updates, fetching data, saving changes, and even undoing those changes.</p>
+<p>我可以给 name 属性添加 @Attribute 并指定其为唯一值。同样，我还可以用 @Relationship 修饰我们的“愿望清单”关系，并设置 Swift Data 在删除此行程时连同所有相关的愿望清单项一并删除。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Model</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trip</span> &#123;</span><br><span class="line">    <span class="meta">@Attribute</span>(.unique) <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> destination: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> endDate: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">var</span> startDate: <span class="type">Date</span></span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Relationship</span>(.cascade) <span class="keyword">var</span> bucketList: [<span class="type">BucketListItem</span>]<span class="operator">?</span> <span class="operator">=</span> []</span><br><span class="line">    <span class="keyword">var</span> livingAccommodation: <span class="type">LivingAccommodation</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>想要深入了解 SwiftData 的建模，可以查阅“使用 SwiftData 建模你的架构”相关内容。接下来，我将介绍如何利用模型类型以及两个关键对象：SwiftData 的 ModelContainer 和 ModelContext，来推动操作。模型容器为你的模型类型提供了持久化的后端支持。你可以选择使用默认的架构设置，或者通过配置和迁移选项进行个性化定制。创建模型容器只需指定你希望存储的模型类型清单。如果你希望进一步自定义你的容器，可以通过配置改变 URL、CloudKit 和组容器标识符，以及迁移选项。一旦设置好容器，你就可以通过模型上下文来进行数据的获取和保存。你还可以利用 SwiftUI 的视图和场景修饰符设置容器，它会自动在视图的环境中建立起来。模型上下文会监控模型的所有变化，并提供许多操作功能，比如追踪更新、获取数据、保存更改，甚至撤销更改，它们是你与这些操作互动的接口。</p>
+<p>Initalize a ModelContainer</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initialize with only a schema</span></span><br><span class="line"><span class="keyword">let</span> container <span class="operator">=</span> <span class="keyword">try</span> <span class="type">ModelContainer</span>([<span class="type">Trip</span>.<span class="keyword">self</span>, <span class="type">LivingAccommodation</span>.<span class="keyword">self</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize with configurations</span></span><br><span class="line"><span class="keyword">let</span> container <span class="operator">=</span> <span class="keyword">try</span> <span class="type">ModelContainer</span>(</span><br><span class="line">    for: [<span class="type">Trip</span>.<span class="keyword">self</span>, <span class="type">LivingAccommodation</span>.<span class="keyword">self</span>],</span><br><span class="line">    configurations: <span class="type">ModelConfiguration</span>(url: <span class="type">URL</span>(<span class="string">&quot;path&quot;</span>))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Createing a model container in SwiftUI</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">@main</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">TripsApp</span>: <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> &#123;</span><br><span class="line">        <span class="type">WindowGroup</span> &#123;</span><br><span class="line">            <span class="type">ContentView</span>()</span><br><span class="line">        &#125;</span><br><span class="line">        .modelContainer(</span><br><span class="line">            for: [<span class="type">Trip</span>.<span class="keyword">self</span>, <span class="type">LivingAccommodation</span>.<span class="keyword">self</span>]</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Accessing the environment’s ModelContext</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ContextView</span> : <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@Environment</span>(\.modelContext) <span class="keyword">private</span> <span class="keyword">var</span> context</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In SwiftUI, you’ll generally get the modelContext from your view’s environment after you create your model container.</p>
+<p>在 SwiftUI 中，通常你会在创建模型容器后，从视图的环境中获得 modelContext。</p>
+<p>Outside the view hierarchy, you can ask the model container to give you a shared main actor bound context, or you can simply instantiate new contexts for a given model container. Once you have a context, you’re ready to fetch data. SwiftData benefits from new Swift native types like predicate and fetch descriptor, as well as significant improvements to Swift’s native sort descriptor.</p>
+<p>如果你在视图层级结构之外工作，可以要求模型容器提供一个共享的、绑定到主要 actor（执行者）的上下文，或者你也可以为特定模型容器创建新的上下文。一旦有了上下文，你就可以开始获取数据了。SwiftData 利用了 Swift 的新原生类型，如 predicate（谓词）和 fetch descriptor（抓取描述符），还有对 Swift 原生 sort descriptor（排序描述符）的重大改进，从而实现了更优的性能和功能。</p>
+<p>New in iOS 17, predicate works with native Swift types and uses Swift macros for strongly typed construction. It’s a fully type checked modern replacement for NSPredicate. Implementing your predicates is easy, too, with Xcode support, like autocomplete. Here are a few examples of building predicates for our Sample Trip app. First, I can specify all the trips whose destination is New York. I can narrow our query down to just trips about birthdays, and I can specify we’re only interested in trips planned for the future, as opposed to any of our past adventures. Once we’ve decided which trips we’re interested in fetching, we can use the new FetchDescriptor type and instruct our ModelContext to fetch those trips. Working together with FetchDescriptor, Swift SortDescriptor is getting some updates to support native Swift types and keypaths, and we can use SortDescriptor to specify the order in which we’d like our fetched Trips to be organized. FetchDescriptor offers many other ways to tailor your SwiftData queries. In addition to predicates and sorting, you can specify related objects to prefetch, limiting the result count, excluding unsaved changes from the results, and much more. SwiftData also makes it easy to create, delete, and change your data by using the ModelContext to drive these operations. After creating your model objects like any other Swift classes, you can insert them into the context and begin using SwiftData features, like change tracking and persistence. Deleting persistent objects is as easy as telling the ModelContext to mark them for deletion, and you can save these and other pending changes by asking the ModelContext to save them and commit them to the persistent container. Changing property values on your model objects is as simple as using the property setters as you normally would. The Model macro modifies your stored properties to help the ModelContext track your changes automatically and include them in your next save operation.</p>
+<p>在 iOS 17 中引入的新功能是，predicate 现在可以与 Swift 的原生类型配合使用，并利用 Swift 宏实现了强类型的构建方式，成为了 NSPredicate 的现代化、完全类型检查的替代品。借助 Xcode 的支持，例如自动补全功能，实现你的 predicates 变得简单易行。以下是我们示例 Trip 应用中构建 predicates 的几个例子。首先，我可以定义一个条件，筛选出所有目的地是纽约的行程。我还可以进一步缩小查询范围，只选择与生日相关的行程，并且指定我们只对未来的计划行程感兴趣，而不包括过去的冒险。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> today <span class="operator">=</span> <span class="type">Date</span>()</span><br><span class="line"><span class="keyword">let</span> tripPredicate <span class="operator">=</span> #<span class="type">Predicate</span>&lt;<span class="type">Trip</span>&gt; &#123;</span><br><span class="line">    <span class="variable">$0</span>.destination <span class="operator">==</span> <span class="string">&quot;New York&quot;</span> <span class="operator">&amp;&amp;</span></span><br><span class="line">    <span class="variable">$0</span>.name.contains(<span class="string">&quot;birthday&quot;</span>) <span class="operator">&amp;&amp;</span></span><br><span class="line">    <span class="variable">$0</span>.startDate <span class="operator">&gt;</span> today</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>确定了我们感兴趣的行程后，我们可以使用新的 FetchDescriptor 类型，指导 ModelContext 去抓取这些行程。FetchDescriptor 与正在更新中的 Swift SortDescriptor 协同工作，以支持 Swift 的原生类型和键路径（keypaths），我们可以利用 SortDescriptor 来指定我们想要的行程抓取结果的排序方式。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> descriptor <span class="operator">=</span> <span class="type">FetchDescriptor</span>&lt;<span class="type">Trip</span>&gt;(</span><br><span class="line">    sortBy: <span class="type">SortDescriptor</span>(\<span class="type">Trip</span>.name),</span><br><span class="line">    predicate: tripPredicate</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> trips <span class="operator">=</span> <span class="keyword">try</span> context.fetch(descriptor)</span><br></pre></td></tr></table></figure>
+
+<p>FetchDescriptor 还提供了其他多种方式来定制你的 SwiftData 查询，包括使用 predicates 和排序，指定预先抓取的相关对象，限制结果数量，排除未保存更改的结果等等。SwiftData 也简化了通过 ModelContext 来创建、删除和修改数据的过程。在像使用其他 Swift 类一样创建好模型对象后，你可以将它们加入上下文中，开始使用 SwiftData 的功能，比如变更跟踪和数据持久化。删除持久化对象就像告诉 ModelContext 标记它们为删除状态那样简单，你可以请求 ModelContext 保存这些以及其他待处理的更改，并提交到持久化容器中。在模型对象上更改属性值就像平时使用属性设置器那样简单。Model 宏会对你的存储属性进行修改，帮助 ModelContext 自动追踪这些更改，并将它们包括在下一次保存操作中。</p>
+<p>To learn more about SwiftData containers and contexts and driving its operations, check out the “Dive Deeper into SwiftData” session. SwiftData was built with SwiftUI in mind, and using them together couldn’t be easier. SwiftUI is the easiest way to get started using SwiftData. Whether its setting up your SwiftData container, fetching data, or driving your view updates, we’ve built APIs directly integrating these frameworks. The new SwiftUI scene and view modifiers are the easiest way to get started building a SwiftData application. With SwiftUI, you can configure your data store, change your options, enable undo, and toggle autosaving. SwiftUI will propagate your model context in its environment. Once you’ve set up, the easiest way to start using your data is the new @Query property wrapper. You can easily load and filter anything stored in your database with a single line of code. SwiftData supports the all-new observable feature for your modeled properties. SwiftUI will automatically refresh changes on any of the observed properties. SwiftUI and SwiftData work hand in hand to help you build engaging and powerful apps. Learn more about using these frameworks together in our “Build an app with SwiftData” session.</p>
+<p>想要深入了解 SwiftData 的容器和上下文以及如何操作它们，请参阅“深入了解 SwiftData”环节。SwiftData 是围绕 SwiftUI 设计的，两者的结合使用异常顺畅。SwiftUI 提供了一个最简便的途径来开始使用 SwiftData。无论是设置 SwiftData 容器、获取数据还是推动视图更新，我们都在这些框架中直接集成了相应的 API。利用新的 SwiftUI 场景和视图修饰符，你可以轻松地开始构建 SwiftData 应用。通过 SwiftUI，你不仅可以配置数据存储、更改设置、启用撤销功能、切换自动保存，还可以在其环境中传递模型上下文。一旦配置完成，利用新的 @Query 属性封装器开始使用数据将变得非常简单。你可以用一行代码就轻松加载和筛选数据库中的内容。SwiftData 还支持模型属性的全新可观察功能，SwiftUI 将自动更新所有观察到的属性变化。SwiftUI 和 SwiftData 的结合能够帮助你打造引人入胜且功能强大的应用。更多关于如何将这两个框架结合使用的信息，可以在我们的“使用 SwiftData 构建应用程序”环节中找到。</p>
+<p>SwiftData is a powerful new solution to data management, designed with first-class support for Swift’s features. It uses Swift’s new macro system to focus entirely on your code. Set up your schema using @model, and configure your persistence experience with the model container. You can easily enable persistence, undo and redo, iCloud synchronization, widget development, and more. Start building SwiftData into your apps right away by leveraging SwiftUI’s seamless integration. We’re excited to see what you build with SwiftData, and thanks for watching.</p>
+<p>SwiftData 是一个针对数据管理的强大新方案，它专门为充分利用 Swift 的特性而设计。它利用 Swift 的新宏系统，让你完全专注于编码。你可以使用 @model 来设定你的架构，并通过模型容器来定制持久化体验。你可以轻松实现数据持久化、撤销/重做操作、iCloud 同步、小部件开发等功能。通过利用 SwiftUI 的无缝集成，你可以立即开始在应用中使用 SwiftData。我们非常期待看到你使用 SwiftData 打造出的成果，感谢观看。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&text=Meet SwiftData"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&is_video=false&description=Meet SwiftData"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Meet SwiftData&body=Check out this article: http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&name=Meet SwiftData&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&t=Meet SwiftData"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    sakuragi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+  
+<script src="/js/search.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+
+    var $inputArea = $("input#search-input");
+    var $resultArea = document.querySelector("div#search-result");
+
+    $inputArea.focus(function() {
+      var search_path = "search.xml";
+      if (search_path.length == 0) {
+        search_path = "search.xml";
+      }
+      var path = "/" + search_path;
+      searchFunc(path, 'search-input', 'search-result');
+    });
+
+    $inputArea.keydown(function(e) {
+      if (e.which == 13) {
+        e.preventDefault();
+      }
+    });
+
+    var observer = new MutationObserver(function(mutationsList, observer) {
+      if (mutationsList.length == 1) {
+        if (mutationsList[0].addedNodes.length) {
+          $(".search-no-result").hide();
+        } else if (mutationsList[0].removedNodes.length) {
+          $(".search-no-result").show(200);
+        }
+      }
+    });
+
+    observer.observe($resultArea, { childList: true });
+
+  });
+  </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

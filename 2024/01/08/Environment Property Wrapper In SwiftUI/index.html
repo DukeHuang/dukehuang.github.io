@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="什么是@Environment？A property wrapper that reads a value from a view’s environment从视图的环境变量中读取一个属性包装的值 OverviewUse the Environment property wrapper to read a value stored in a view’s environment.Indicate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Environment Property Wrapper In SwiftUI">
+<meta property="og:url" content="http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/index.html">
+<meta property="og:site_name" content="sakuragi&#39;s blog">
+<meta property="og:description" content="什么是@Environment？A property wrapper that reads a value from a view’s environment从视图的环境变量中读取一个属性包装的值 OverviewUse the Environment property wrapper to read a value stored in a view’s environment.Indicate">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-08T03:34:37.000Z">
+<meta property="article:modified_time" content="2024-01-08T09:09:16.628Z">
+<meta property="article:author" content="sakuragi">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Environment Property Wrapper In SwiftUI</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/01/03/Meet%20SwiftData/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&text=Environment Property Wrapper In SwiftUI"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&is_video=false&description=Environment Property Wrapper In SwiftUI"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Environment Property Wrapper In SwiftUI&body=Check out this article: http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&name=Environment Property Wrapper In SwiftUI&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&t=Environment Property Wrapper In SwiftUI"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Environment%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是@Environment？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-number">2.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-an-observable-object"><span class="toc-number">3.</span> <span class="toc-text">Get an observable object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-an-observable-object-using-a-key-path"><span class="toc-number">4.</span> <span class="toc-text">Get an observable object using a key path</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Environment Property Wrapper In SwiftUI
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">sakuragi</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-08T03:34:37.000Z" class="dt-published" itemprop="datePublished">2024-01-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="什么是-Environment？"><a href="#什么是-Environment？" class="headerlink" title="什么是@Environment？"></a>什么是@Environment？</h2><p>A property wrapper that reads a value from a view’s environment<br>从视图的环境变量中读取一个属性包装的值</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Use the Environment property wrapper to read a value stored in a view’s environment.<br>Indicate the value to read using an <code>EnvironmnetValues</code> key path in the property declarations.<br>在属性声明中使用<code>EnvironmnetValues</code>键路径来指示要读取的值。</p>
+<p>For example, you can create a property that reads the color scheme of the current view using the key path of the colorScheme property:<br>例如，你可以创建一个属性，使用colorScheme属性的键路径来读取当前视图的颜色方案：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Environment</span>(\.colorScheme) <span class="keyword">var</span> colorScheme: <span class="type">ColorScheme</span></span><br></pre></td></tr></table></figure>
+<p>You can condition a view’s content on the associated value, which you read from the declared property’s wrappedValue. </p>
+<p>As with any property wrapper, you access the wrapped value by directly referring to the property:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> colorScheme <span class="operator">==</span> .dark &#123;</span><br><span class="line">    <span class="type">DrarkContent</span>()</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="type">LightContent</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If the value changes, SwiftUI updates any parts of your view that depend on the value. For example, that might happen in the above example<br>if the user Appeareance settings.<br>当某个值发生变化时，SwiftUI 会自动更新视图中依赖于这个值的所有部分。比如，在前述例子中，如果用户改变了他们的外观设置，这种更新就会发生。</p>
+<p>You can use this property wrapper to read - but not set - an environment value. SwiftUI updates some environment values automatically based<br>on system settings and provides reasonable defaults for others. You can override some of these, as well as set custom environment vlaues that<br>you define, using the environments(<em>:</em>:) view modifier.<br>你可以利用这个属性包装器来读取（而非设定）一个环境值。SwiftUI 会根据系统设置自动更新一些环境值，并为其它值提供合适的默认设置。你可以通过使用 environments(::) 视图修饰符来覆盖部分环境值，或者设定你自己定义的环境值。</p>
+<p>For the complete list of environment values provided by SwiftUI, see the properties of the <code>EnvironmentValues</code> structure. For information about<br>creating custom environment values, see the <code>EnvironmentKey</code> protocol.<br>如果想要查看 SwiftUI 提供的所有环境值，请参考 EnvironmentValues 结构体中的属性。关于如何创建自定义环境值，可以参见 EnvironmentKey 协议的相关信息。</p>
+<h2 id="Get-an-observable-object"><a href="#Get-an-observable-object" class="headerlink" title="Get an observable object"></a>Get an observable object</h2><p>You can also use Environment to get an observable object from a view’s environment. The observable object must conform to the Observable protocol, and your app must set the object in environment using the object itself or a key path.<br>To see the object in the environment using the object itself, use the environment(_:) modifer:</p>
+<p>你还可以利用 Environment 从视图的环境里提取一个可观察对象。这个对象必须遵循 Observable 协议，并且你的应用需要通过对象本身或其键路径来在环境中设置此对象。<br>为了通过对象本身在环境中观察这个对象，你可以使用 environment(_:) 修饰符：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Observable</span></span><br><span class="line"><span class="type">Class</span> <span class="type">Library</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> books: [<span class="type">Book</span>] <span class="operator">=</span> [<span class="type">Book</span>(), <span class="type">Book</span>(), <span class="type">Book</span>()]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> availableBooksCount: <span class="type">Int</span> &#123;</span><br><span class="line">        books.filter(\.isAvailable).count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@main</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BookReaderApp</span>: <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> library <span class="operator">=</span> <span class="type">Library</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> &#123;</span><br><span class="line">        <span class="type">WindowGroup</span> &#123;</span><br><span class="line">            <span class="type">LibraryView</span>()</span><br><span class="line">            .environment(library)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>To get the observable object using its type, create a property and provide the Environment property wrapper the object’s type:<br>要通过对象的类型来获取这个可观察对象，你需要先定义一个属性，然后为 Environment 的属性包装器指定这个对象的类型：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">LibraryView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@Environment</span>(<span class="type">Library</span>.<span class="keyword">self</span>) <span class="keyword">private</span> <span class="keyword">var</span> library</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>By default, reading an object from the environment returns a non-optional object  when using the object type as the key. This  default behavior assumes that a view in the current hierarchy previously stored a non-optional instance of the type using the <code>environment(_:)</code> modifier. If a view attempts to retrieve an object using its type and that object isn’t in the environment, SwiftUI throws an exception.<br>默认情况下，若使用对象的类型作为键从环境中读取数据，会得到一个非可选类型的对象。这是基于一个假设：在当前的视图层级中，已经有视图使用 environment(_:) 修饰符存储了这种类型的非可选实例。如果视图试图通过类型来获取一个不存在于环境中的对象，SwiftUI 将会抛出异常。</p>
+<p>In cases where is no guarantee that an object is in the environment, retrieve an optional version of the object as shown in the following code. If the object isn’t avaiable the environment, SwiftUI returns nil instead of throwing an exception.<br>在无法确保环境中存在某个对象的情况下，应该尝试获取该对象的可选版本，正如下面的代码展示的那样。这样做的话，如果环境中没有该对象，SwiftUI 将返回 nil，而不是抛出异常。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Environment</span>(<span class="type">Library</span>.<span class="keyword">self</span>) <span class="keyword">private</span> <span class="keyword">var</span> library: <span class="type">Library</span>?</span><br></pre></td></tr></table></figure>
+
+<h2 id="Get-an-observable-object-using-a-key-path"><a href="#Get-an-observable-object-using-a-key-path" class="headerlink" title="Get an observable object using a key path"></a>Get an observable object using a key path</h2><p>To set the object with a key path, use the <code>environment(_:_:)</code> modifier:</p>
+<p>要使用键路径来设置对象，可以应用 environment(<em>:</em>:) 修饰符：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Observable</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Library</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> books: [<span class="type">Book</span>] <span class="operator">=</span> [<span class="type">Book</span>(), <span class="type">Book</span>(), <span class="type">Book</span>()]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> availableBooksCount: <span class="type">Int</span> &#123;</span><br><span class="line">        books.filter(\.isAvailable).count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@main</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BookReaderApp</span>: <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> library <span class="operator">=</span> <span class="type">Library</span>()</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> &#123;</span><br><span class="line">        <span class="type">WindowGroup</span> &#123;</span><br><span class="line">            <span class="type">LibraryView</span>()</span><br><span class="line">            .environment(\.library, library)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>To get the object, create a propery and specify the key path:<br>要取得对象，需先定义一个属性，然后明确指定键路径：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">LibraryView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@Environment</span>(\.library) <span class="keyword">private</span> <span class="keyword">var</span> library</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Environment%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是@Environment？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-number">2.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-an-observable-object"><span class="toc-number">3.</span> <span class="toc-text">Get an observable object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-an-observable-object-using-a-key-path"><span class="toc-number">4.</span> <span class="toc-text">Get an observable object using a key path</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&text=Environment Property Wrapper In SwiftUI"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&is_video=false&description=Environment Property Wrapper In SwiftUI"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Environment Property Wrapper In SwiftUI&body=Check out this article: http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&title=Environment Property Wrapper In SwiftUI"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&name=Environment Property Wrapper In SwiftUI&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/&t=Environment Property Wrapper In SwiftUI"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    sakuragi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
