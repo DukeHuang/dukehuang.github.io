@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>Meet SwiftData | sakuragi&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macr">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Meet SwiftData">
 <meta property="og:url" content="http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/index.html">
@@ -18,77 +17,140 @@
 <meta property="article:modified_time" content="2024-01-08T03:35:27.184Z">
 <meta property="article:author" content="sakuragi">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="sakuragi&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Meet SwiftData</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 5.4.2"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">sakuragi&#39;s blog</a>
-      </h1>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&text=Meet SwiftData"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&is_video=false&description=Meet SwiftData"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Meet SwiftData&body=Check out this article: http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&name=Meet SwiftData&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&t=Meet SwiftData"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Meet SwiftData
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">sakuragi</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-03T04:11:16.000Z" class="dt-published" itemprop="datePublished">2024-01-03</time>
+        
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sakuragg.com"></form>
-      </div>
+
+
+      
+
+      
+
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Meet SwiftData" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/03/Meet%20SwiftData/" class="article-date">
-  <time datetime="2024-01-03T04:11:16.000Z" itemprop="datePublished">2024-01-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Meet SwiftData
-    </h1>
+  </header>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macro system to create a seamless API experience.</p>
+  <div class="content e-content" itemprop="articleBody">
+    <p>SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macro system to create a seamless API experience.</p>
 <p>SwiftData 是一款强化现代 Swift 应用的强大数据建模和管理框架。它与 SwiftUI 类似，完全基于代码实现，不依赖任何外部文件格式，并利用 Swift 的全新宏系统，带来了流畅的 API 使用体验。</p>
 <p>SwiftData relies on the expressivity provided by the new Swift language macros in order to create a seamless API experience. And it is naturally integrated with SwiftUI and works with other platform features, like CloudKit and Widgets. In this session, we’ll look at the new @Model macro and its power to model your data directly from Swift code, I’ll introduce you to fetching and modifying your data with SwiftData, then I’ll finish up by providing you with an overview of some of the other platform frameworks that work seamlessly with SwiftData.</p>
 <p>SwiftData 的强大之处在于它利用 Swift 新引入的宏功能，实现了高度表达性和无缝集成的 API。它不仅与 SwiftUI 完美融合，还支持 CloudKit、Widgets 等其他平台特性。在本环节中，我会详细介绍新的 @Model 宏及其如何使你直接通过 Swift 代码进行数据建模的能力。接下来，我会带你了解如何使用 SwiftData 来获取和修改数据，并最后简要介绍一些与 SwiftData 无缝配合的其他平台框架。</p>
@@ -127,117 +189,180 @@
 <p>SwiftData is a powerful new solution to data management, designed with first-class support for Swift’s features. It uses Swift’s new macro system to focus entirely on your code. Set up your schema using @model, and configure your persistence experience with the model container. You can easily enable persistence, undo and redo, iCloud synchronization, widget development, and more. Start building SwiftData into your apps right away by leveraging SwiftUI’s seamless integration. We’re excited to see what you build with SwiftData, and thanks for watching.</p>
 <p>SwiftData 是一个针对数据管理的强大新方案，它专门为充分利用 Swift 的特性而设计。它利用 Swift 的新宏系统，让你完全专注于编码。你可以使用 @model 来设定你的架构，并通过模型容器来定制持久化体验。你可以轻松实现数据持久化、撤销/重做操作、iCloud 同步、小部件开发等功能。通过利用 SwiftUI 的无缝集成，你可以立即开始在应用中使用 SwiftData。我们非常期待看到你使用 SwiftData 打造出的成果，感谢观看。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/" data-id="clr8m6uj00003bl1gedll3qp1" class="article-share-link">Share</a>
-      
-      
-    </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Environment Property Wrapper In SwiftUI
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
 </article>
 
-</section>
+
+
         
-          <aside id="sidebar">
-  
-    
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
+    <div id="nav-footer" style="display: none">
       <ul>
         
-          <li>
-            <a href="/2024/01/08/key-path-in-SwiftUI/">key path in SwiftUI</a>
-          </li>
+          <li><a href="/">Home</a></li>
         
-          <li>
-            <a href="/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/">Environment Property Wrapper In SwiftUI</a>
-          </li>
+          <li><a href="/about/">About</a></li>
         
-          <li>
-            <a href="/2024/01/03/Meet%20SwiftData/">Meet SwiftData</a>
-          </li>
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
         
       </ul>
     </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2024 sakuragi<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&text=Meet SwiftData"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&is_video=false&description=Meet SwiftData"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Meet SwiftData&body=Check out this article: http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&title=Meet SwiftData"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&name=Meet SwiftData&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/&t=Meet SwiftData"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
+    </div>
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
 
   </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    sakuragi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+  
+<script src="/js/search.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+
+    var $inputArea = $("input#search-input");
+    var $resultArea = document.querySelector("div#search-result");
+
+    $inputArea.focus(function() {
+      var search_path = "search.xml";
+      if (search_path.length == 0) {
+        search_path = "search.xml";
+      }
+      var path = "/" + search_path;
+      searchFunc(path, 'search-input', 'search-result');
+    });
+
+    $inputArea.keydown(function(e) {
+      if (e.which == 13) {
+        e.preventDefault();
+      }
+    });
+
+    var observer = new MutationObserver(function(mutationsList, observer) {
+      if (mutationsList.length == 1) {
+        if (mutationsList[0].addedNodes.length) {
+          $(".search-no-result").hide();
+        } else if (mutationsList[0].removedNodes.length) {
+          $(".search-no-result").show(200);
+        }
+      }
+    });
+
+    observer.observe($resultArea, { childList: true });
+
+  });
+  </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
 </body>
 </html>
