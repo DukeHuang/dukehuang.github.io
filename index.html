@@ -1,23 +1,340 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+  
+  <title>sakuragi&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="sakuragi&#39;s blog">
+<meta property="og:url" content="http://www.sakuragg.com/index.html">
+<meta property="og:site_name" content="sakuragi&#39;s blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="sakuragi">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="sakuragi&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
+<meta name="generator" content="Hexo 5.4.2"></head>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">sakuragi&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sakuragg.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-key-path-in-SwiftUI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/08/key-path-in-SwiftUI/" class="article-date">
+  <time datetime="2024-01-08T09:22:08.000Z" itemprop="datePublished">2024-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/08/key-path-in-SwiftUI/">key path in SwiftUI</a>
+    </h1>
+  
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在SwiftUI中，经常看到一些反斜杠的一些用法</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Environment(\.library) private var library</span><br></pre></td></tr></table></figure>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<h2 id="KeyPath"><a href="#KeyPath" class="headerlink" title="KeyPath"></a>KeyPath</h2><p>其中的反斜杠代表的是keypath,中文可以翻译成键路径，用于引用对象的属性而不是值本身。它们在很多方面类似于属性名的字符串，但是类型安全的，并且在编译时进行检查。</p>
+<h2 id="使用反斜杠："><a href="#使用反斜杠：" class="headerlink" title="使用反斜杠："></a>使用反斜杠：</h2><p>在键路径表达式中，反斜杠 \ 用于指示接下来的部分是属性的名称。它标志着键路径的开始。例如，如果你有一个名为 <code>person</code> 的对象，且想引用它的 <code>name</code> 属性的键路径，你会写作 <code>\Person.name</code>。</p>
+<h2 id="在Swfit-UI中"><a href="#在Swfit-UI中" class="headerlink" title="在Swfit UI中"></a>在Swfit UI中</h2><p>在SwiftUI中， <code>@Environment</code> 属性包装器允许你从环境中访问共享数据。例如，SwiftUI环境中包含了一些预定义的值，比如 <code>\.managedObjectContext</code> 用于CoreData。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sakuragg.com/2024/01/08/key-path-in-SwiftUI/" data-id="clr8m6uiv0001bl1g2vpyfp9l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Environment Property Wrapper In SwiftUI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/" class="article-date">
+  <time datetime="2024-01-08T03:34:37.000Z" itemprop="datePublished">2024-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/">Environment Property Wrapper In SwiftUI</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是-Environment？"><a href="#什么是-Environment？" class="headerlink" title="什么是@Environment？"></a>什么是@Environment？</h2><p>A property wrapper that reads a value from a view’s environment<br>从视图的环境变量中读取一个属性包装的值</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Use the Environment property wrapper to read a value stored in a view’s environment.<br>Indicate the value to read using an <code>EnvironmnetValues</code> key path in the property declarations.<br>在属性声明中使用<code>EnvironmnetValues</code>键路径来指示要读取的值。</p>
+<p>For example, you can create a property that reads the color scheme of the current view using the key path of the colorScheme property:<br>例如，你可以创建一个属性，使用colorScheme属性的键路径来读取当前视图的颜色方案：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Environment</span>(\.colorScheme) <span class="keyword">var</span> colorScheme: <span class="type">ColorScheme</span></span><br></pre></td></tr></table></figure>
+<p>You can condition a view’s content on the associated value, which you read from the declared property’s wrappedValue. </p>
+<p>As with any property wrapper, you access the wrapped value by directly referring to the property:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> colorScheme <span class="operator">==</span> .dark &#123;</span><br><span class="line">    <span class="type">DrarkContent</span>()</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="type">LightContent</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If the value changes, SwiftUI updates any parts of your view that depend on the value. For example, that might happen in the above example<br>if the user Appeareance settings.<br>当某个值发生变化时，SwiftUI 会自动更新视图中依赖于这个值的所有部分。比如，在前述例子中，如果用户改变了他们的外观设置，这种更新就会发生。</p>
+<p>You can use this property wrapper to read - but not set - an environment value. SwiftUI updates some environment values automatically based<br>on system settings and provides reasonable defaults for others. You can override some of these, as well as set custom environment vlaues that<br>you define, using the environments(<em>:</em>:) view modifier.<br>你可以利用这个属性包装器来读取（而非设定）一个环境值。SwiftUI 会根据系统设置自动更新一些环境值，并为其它值提供合适的默认设置。你可以通过使用 environments(::) 视图修饰符来覆盖部分环境值，或者设定你自己定义的环境值。</p>
+<p>For the complete list of environment values provided by SwiftUI, see the properties of the <code>EnvironmentValues</code> structure. For information about<br>creating custom environment values, see the <code>EnvironmentKey</code> protocol.<br>如果想要查看 SwiftUI 提供的所有环境值，请参考 EnvironmentValues 结构体中的属性。关于如何创建自定义环境值，可以参见 EnvironmentKey 协议的相关信息。</p>
+<h2 id="Get-an-observable-object"><a href="#Get-an-observable-object" class="headerlink" title="Get an observable object"></a>Get an observable object</h2><p>You can also use Environment to get an observable object from a view’s environment. The observable object must conform to the Observable protocol, and your app must set the object in environment using the object itself or a key path.<br>To see the object in the environment using the object itself, use the environment(<em>:) modifer:<br>你还可以利用 Environment 从视图的环境里提取一个可观察对象。这个对象必须遵循 Observable 协议，并且你的应用需要通过对象本身或其键路径来在环境中设置此对象。<br>为了通过对象本身在环境中观察这个对象，你可以使用 environment(</em>:) 修饰符：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Observable</span></span><br><span class="line"><span class="type">Class</span> <span class="type">Library</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> books: [<span class="type">Book</span>] <span class="operator">=</span> [<span class="type">Book</span>(), <span class="type">Book</span>(), <span class="type">Book</span>()]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> availableBooksCount: <span class="type">Int</span> &#123;</span><br><span class="line">        books.filter(\.isAvailable).count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@main</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BookReaderApp</span>: <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> library <span class="operator">=</span> <span class="type">Library</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> &#123;</span><br><span class="line">        <span class="type">WindowGroup</span> &#123;</span><br><span class="line">            <span class="type">LibraryView</span>()</span><br><span class="line">            .environment(library)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>To get the observable object using its type, create a property and provide the Environment property wrapper the object’s type:<br>要通过对象的类型来获取这个可观察对象，你需要先定义一个属性，然后为 Environment 的属性包装器指定这个对象的类型：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">LibraryView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@Environment</span>(<span class="type">Library</span>.<span class="keyword">self</span>) <span class="keyword">private</span> <span class="keyword">var</span> library</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>By default, reading an object from the environment returns a non-optional object  when using the object type as the key. This  default behavior assumes that a view in the current hierarchy previously stored a non-optional instance of the type using the <code>environment(_:)</code> modifier. If a view attempts to retrieve an object using its type and that object isn’t in the environment, SwiftUI throws an exception.<br>默认情况下，若使用对象的类型作为键从环境中读取数据，会得到一个非可选类型的对象。这是基于一个假设：在当前的视图层级中，已经有视图使用 environment(_:) 修饰符存储了这种类型的非可选实例。如果视图试图通过类型来获取一个不存在于环境中的对象，SwiftUI 将会抛出异常。</p>
+<p>In cases where is no guarantee that an object is in the environment, retrieve an optional version of the object as shown in the following code. If the object isn’t avaiable the environment, SwiftUI returns nil instead of throwing an exception.<br>在无法确保环境中存在某个对象的情况下，应该尝试获取该对象的可选版本，正如下面的代码展示的那样。这样做的话，如果环境中没有该对象，SwiftUI 将返回 nil，而不是抛出异常。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Environment</span>(<span class="type">Library</span>.<span class="keyword">self</span>) <span class="keyword">private</span> <span class="keyword">var</span> library: <span class="type">Library</span>?</span><br></pre></td></tr></table></figure>
+
+<h2 id="Get-an-observable-object-using-a-key-path"><a href="#Get-an-observable-object-using-a-key-path" class="headerlink" title="Get an observable object using a key path"></a>Get an observable object using a key path</h2><p>To set the object with a key path, use the <code>environment(_:_:)</code> modifier:<br>要使用键路径来设置对象，可以应用 environment(<em>:</em>:) 修饰符：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Observable</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Library</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> books: [<span class="type">Book</span>] <span class="operator">=</span> [<span class="type">Book</span>(), <span class="type">Book</span>(), <span class="type">Book</span>()]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> availableBooksCount: <span class="type">Int</span> &#123;</span><br><span class="line">        books.filter(\.isAvailable).count</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@main</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BookReaderApp</span>: <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> library <span class="operator">=</span> <span class="type">Library</span>()</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> &#123;</span><br><span class="line">        <span class="type">WindowGroup</span> &#123;</span><br><span class="line">            <span class="type">LibraryView</span>()</span><br><span class="line">            .environment(\.library, library)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>To get the object, create a propery and specify the key path:<br>要取得对象，需先定义一个属性，然后明确指定键路径：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">LibraryView</span>: <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@Environment</span>(\.library) <span class="keyword">private</span> <span class="keyword">var</span> library</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sakuragg.com/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/" data-id="clr8m6uiy0002bl1gahas727g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Meet SwiftData" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/03/Meet%20SwiftData/" class="article-date">
+  <time datetime="2024-01-03T04:11:16.000Z" itemprop="datePublished">2024-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/03/Meet%20SwiftData/">Meet SwiftData</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SwiftData is a powerful framework for data modeling and management and enhances your modern Swift app. Like SwiftUI, it focuses entirely on code with no external file formats and uses Swift’s new macro system to create a seamless API experience.</p>
+<p>SwiftData 是一款强化现代 Swift 应用的强大数据建模和管理框架。它与 SwiftUI 类似，完全基于代码实现，不依赖任何外部文件格式，并利用 Swift 的全新宏系统，带来了流畅的 API 使用体验。</p>
+<p>SwiftData relies on the expressivity provided by the new Swift language macros in order to create a seamless API experience. And it is naturally integrated with SwiftUI and works with other platform features, like CloudKit and Widgets. In this session, we’ll look at the new @Model macro and its power to model your data directly from Swift code, I’ll introduce you to fetching and modifying your data with SwiftData, then I’ll finish up by providing you with an overview of some of the other platform frameworks that work seamlessly with SwiftData.</p>
+<p>SwiftData 的强大之处在于它利用 Swift 新引入的宏功能，实现了高度表达性和无缝集成的 API。它不仅与 SwiftUI 完美融合，还支持 CloudKit、Widgets 等其他平台特性。在本环节中，我会详细介绍新的 @Model 宏及其如何使你直接通过 Swift 代码进行数据建模的能力。接下来，我会带你了解如何使用 SwiftData 来获取和修改数据，并最后简要介绍一些与 SwiftData 无缝配合的其他平台框架。</p>
+<p>Now we’ll look more into @Model.</p>
+<p>下面，让我们深入了解一下 @Model 宏的魅力吧。</p>
+<p>@Model is a new Swift macro that helps to define your model’s schema from your Swift code. SwiftData schemas are normal Swift code, but when needed, you can annotate your properties with additional metadata. Using this schema, SwiftData adds powerful functionality to your model objects. It’s as simple as decorating your class with @Model, and the schema is generated. Models in SwiftData are the source of truth for your application’s schema and drive the persistence experience. Part of this experience will transform the class’ stored properties and turns them into persisted properties. Adding @Model to your model opens up a world of possibilities. SwiftData natively adapts your value type properties to be used as attributes right away. These properties include basic value types, like string, int, and float. They can also include more complex value types, such as structs, enums, and codable types too, including collections. SwiftData models reference types as relationships. You can create links between your model types with relationships and collections of model types. @Model will modify all the stored properties on your type. You can influence how SwiftData builds your schema using metadata on your properties. With @Attribute, you can add uniqueness constraints. You can use @Relationship to control the choice of inverses and specify delete propagation rules. These change the behaviors of links between models. You can tell SwiftData not to include specific properties with the Transient macro. Here is our previous Trip example. I’ll adjust SwiftData’s schema generation by adding metadata to our stored properties.</p>
+<p>@Model 是 Swift 新推出的一个宏，它能帮你直接在 Swift 代码中定义模型的结构。SwiftData 的结构本质上就是标准的 Swift 代码，不过你可以在必要时通过附加元数据来增强属性。借助这种结构，SwiftData 能为你的模型对象增添诸多强大功能。你只需简单地在类上使用 @Model 标记，模型结构就自动生成了。SwiftData 中的模型成为了应用程序结构的核心，也是驱动数据持久化的关键。其中的一部分功能会将类的存储属性转化为持久化属性。为模型添加 @Model 就意味着开启了无限可能。SwiftData 能自然地适应你的值类型属性，使它们立即成为可用属性。这些属性包括基础值类型如字符串（string）、整数（int）、浮点数（float），甚至还包括结构体、枚举和可编码类型，以及它们的集合。SwiftData 将模型中的引用类型视为关联关系。你可以通过关联关系和模型类型的集合来建立模型间的连接。@Model 会对你的类型中所有存储属性进行修改。你可以通过在属性上添加元数据来指导 SwiftData 如何构建模型结构。例如，使用 @Attribute 可以增加唯一性约束，而 @Relationship 则允许你控制反向关系的选择和删除规则的设定，从而改变模型间链接的行为。你还可以通过 Transient 宏来指示 SwiftData 忽略特定属性。以下是我们之前的 Trip 示例，我将通过给存储属性添加元数据来调整 SwiftData 的结构生成方式。</p>
+<p>I can add @Attribute to name and specify that it should be unique. I can also decorate our bucket list relationship with @Relationship and instruct Swift Data to delete all the related bucket list items whenever this trip is deleted. To learn more about SwiftData modeling, check out the “Model your schema with SwiftData” session. Now I’ll cover how you can work with your model types and the two key objects you’ll use to drive your operations: SwiftData’s ModelContainer and ModelContext. The model container provides the persistent backend for your model types. You can use the default settings just by specifying your schema, or you can customize it with configurations and migration options. You can create a model container just by specifying the list of model types you want stored. If you want to customize your container further, you can use a configuration to change your URL, CloudKit and group container identifiers, and migration options With your container set up, you’re ready to fetch and save data with model contexts. You can also use SwiftUI’s view and scene modifiers to set up container and have it automatically established in the view’s environment. Model contexts observe all the changes to your models and provide many of the actions to operate on them. They are your interface to tracking updates, fetching data, saving changes, and even undoing those changes.</p>
+<p>我可以给 name 属性添加 @Attribute 并指定其为唯一值。同样，我还可以用 @Relationship 修饰我们的“愿望清单”关系，并设置 Swift Data 在删除此行程时连同所有相关的愿望清单项一并删除。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Model</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trip</span> &#123;</span><br><span class="line">    <span class="meta">@Attribute</span>(.unique) <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> destination: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> endDate: <span class="type">Date</span></span><br><span class="line">    <span class="keyword">var</span> startDate: <span class="type">Date</span></span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Relationship</span>(.cascade) <span class="keyword">var</span> bucketList: [<span class="type">BucketListItem</span>]<span class="operator">?</span> <span class="operator">=</span> []</span><br><span class="line">    <span class="keyword">var</span> livingAccommodation: <span class="type">LivingAccommodation</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>想要深入了解 SwiftData 的建模，可以查阅“使用 SwiftData 建模你的架构”相关内容。接下来，我将介绍如何利用模型类型以及两个关键对象：SwiftData 的 ModelContainer 和 ModelContext，来推动操作。模型容器为你的模型类型提供了持久化的后端支持。你可以选择使用默认的架构设置，或者通过配置和迁移选项进行个性化定制。创建模型容器只需指定你希望存储的模型类型清单。如果你希望进一步自定义你的容器，可以通过配置改变 URL、CloudKit 和组容器标识符，以及迁移选项。一旦设置好容器，你就可以通过模型上下文来进行数据的获取和保存。你还可以利用 SwiftUI 的视图和场景修饰符设置容器，它会自动在视图的环境中建立起来。模型上下文会监控模型的所有变化，并提供许多操作功能，比如追踪更新、获取数据、保存更改，甚至撤销更改，它们是你与这些操作互动的接口。</p>
+<p>Initalize a ModelContainer</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Initialize with only a schema</span></span><br><span class="line"><span class="keyword">let</span> container <span class="operator">=</span> <span class="keyword">try</span> <span class="type">ModelContainer</span>([<span class="type">Trip</span>.<span class="keyword">self</span>, <span class="type">LivingAccommodation</span>.<span class="keyword">self</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize with configurations</span></span><br><span class="line"><span class="keyword">let</span> container <span class="operator">=</span> <span class="keyword">try</span> <span class="type">ModelContainer</span>(</span><br><span class="line">    for: [<span class="type">Trip</span>.<span class="keyword">self</span>, <span class="type">LivingAccommodation</span>.<span class="keyword">self</span>],</span><br><span class="line">    configurations: <span class="type">ModelConfiguration</span>(url: <span class="type">URL</span>(<span class="string">&quot;path&quot;</span>))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Createing a model container in SwiftUI</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">@main</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">TripsApp</span>: <span class="title class_">App</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> &#123;</span><br><span class="line">        <span class="type">WindowGroup</span> &#123;</span><br><span class="line">            <span class="type">ContentView</span>()</span><br><span class="line">        &#125;</span><br><span class="line">        .modelContainer(</span><br><span class="line">            for: [<span class="type">Trip</span>.<span class="keyword">self</span>, <span class="type">LivingAccommodation</span>.<span class="keyword">self</span>]</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Accessing the environment’s ModelContext</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> SwiftUI</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ContextView</span> : <span class="title class_">View</span> &#123;</span><br><span class="line">    <span class="meta">@Environment</span>(\.modelContext) <span class="keyword">private</span> <span class="keyword">var</span> context</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In SwiftUI, you’ll generally get the modelContext from your view’s environment after you create your model container.</p>
+<p>在 SwiftUI 中，通常你会在创建模型容器后，从视图的环境中获得 modelContext。</p>
+<p>Outside the view hierarchy, you can ask the model container to give you a shared main actor bound context, or you can simply instantiate new contexts for a given model container. Once you have a context, you’re ready to fetch data. SwiftData benefits from new Swift native types like predicate and fetch descriptor, as well as significant improvements to Swift’s native sort descriptor.</p>
+<p>如果你在视图层级结构之外工作，可以要求模型容器提供一个共享的、绑定到主要 actor（执行者）的上下文，或者你也可以为特定模型容器创建新的上下文。一旦有了上下文，你就可以开始获取数据了。SwiftData 利用了 Swift 的新原生类型，如 predicate（谓词）和 fetch descriptor（抓取描述符），还有对 Swift 原生 sort descriptor（排序描述符）的重大改进，从而实现了更优的性能和功能。</p>
+<p>New in iOS 17, predicate works with native Swift types and uses Swift macros for strongly typed construction. It’s a fully type checked modern replacement for NSPredicate. Implementing your predicates is easy, too, with Xcode support, like autocomplete. Here are a few examples of building predicates for our Sample Trip app. First, I can specify all the trips whose destination is New York. I can narrow our query down to just trips about birthdays, and I can specify we’re only interested in trips planned for the future, as opposed to any of our past adventures. Once we’ve decided which trips we’re interested in fetching, we can use the new FetchDescriptor type and instruct our ModelContext to fetch those trips. Working together with FetchDescriptor, Swift SortDescriptor is getting some updates to support native Swift types and keypaths, and we can use SortDescriptor to specify the order in which we’d like our fetched Trips to be organized. FetchDescriptor offers many other ways to tailor your SwiftData queries. In addition to predicates and sorting, you can specify related objects to prefetch, limiting the result count, excluding unsaved changes from the results, and much more. SwiftData also makes it easy to create, delete, and change your data by using the ModelContext to drive these operations. After creating your model objects like any other Swift classes, you can insert them into the context and begin using SwiftData features, like change tracking and persistence. Deleting persistent objects is as easy as telling the ModelContext to mark them for deletion, and you can save these and other pending changes by asking the ModelContext to save them and commit them to the persistent container. Changing property values on your model objects is as simple as using the property setters as you normally would. The Model macro modifies your stored properties to help the ModelContext track your changes automatically and include them in your next save operation.</p>
+<p>在 iOS 17 中引入的新功能是，predicate 现在可以与 Swift 的原生类型配合使用，并利用 Swift 宏实现了强类型的构建方式，成为了 NSPredicate 的现代化、完全类型检查的替代品。借助 Xcode 的支持，例如自动补全功能，实现你的 predicates 变得简单易行。以下是我们示例 Trip 应用中构建 predicates 的几个例子。首先，我可以定义一个条件，筛选出所有目的地是纽约的行程。我还可以进一步缩小查询范围，只选择与生日相关的行程，并且指定我们只对未来的计划行程感兴趣，而不包括过去的冒险。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> today <span class="operator">=</span> <span class="type">Date</span>()</span><br><span class="line"><span class="keyword">let</span> tripPredicate <span class="operator">=</span> #<span class="type">Predicate</span>&lt;<span class="type">Trip</span>&gt; &#123;</span><br><span class="line">    <span class="variable">$0</span>.destination <span class="operator">==</span> <span class="string">&quot;New York&quot;</span> <span class="operator">&amp;&amp;</span></span><br><span class="line">    <span class="variable">$0</span>.name.contains(<span class="string">&quot;birthday&quot;</span>) <span class="operator">&amp;&amp;</span></span><br><span class="line">    <span class="variable">$0</span>.startDate <span class="operator">&gt;</span> today</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>确定了我们感兴趣的行程后，我们可以使用新的 FetchDescriptor 类型，指导 ModelContext 去抓取这些行程。FetchDescriptor 与正在更新中的 Swift SortDescriptor 协同工作，以支持 Swift 的原生类型和键路径（keypaths），我们可以利用 SortDescriptor 来指定我们想要的行程抓取结果的排序方式。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> descriptor <span class="operator">=</span> <span class="type">FetchDescriptor</span>&lt;<span class="type">Trip</span>&gt;(</span><br><span class="line">    sortBy: <span class="type">SortDescriptor</span>(\<span class="type">Trip</span>.name),</span><br><span class="line">    predicate: tripPredicate</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> trips <span class="operator">=</span> <span class="keyword">try</span> context.fetch(descriptor)</span><br></pre></td></tr></table></figure>
+
+<p>FetchDescriptor 还提供了其他多种方式来定制你的 SwiftData 查询，包括使用 predicates 和排序，指定预先抓取的相关对象，限制结果数量，排除未保存更改的结果等等。SwiftData 也简化了通过 ModelContext 来创建、删除和修改数据的过程。在像使用其他 Swift 类一样创建好模型对象后，你可以将它们加入上下文中，开始使用 SwiftData 的功能，比如变更跟踪和数据持久化。删除持久化对象就像告诉 ModelContext 标记它们为删除状态那样简单，你可以请求 ModelContext 保存这些以及其他待处理的更改，并提交到持久化容器中。在模型对象上更改属性值就像平时使用属性设置器那样简单。Model 宏会对你的存储属性进行修改，帮助 ModelContext 自动追踪这些更改，并将它们包括在下一次保存操作中。</p>
+<p>To learn more about SwiftData containers and contexts and driving its operations, check out the “Dive Deeper into SwiftData” session. SwiftData was built with SwiftUI in mind, and using them together couldn’t be easier. SwiftUI is the easiest way to get started using SwiftData. Whether its setting up your SwiftData container, fetching data, or driving your view updates, we’ve built APIs directly integrating these frameworks. The new SwiftUI scene and view modifiers are the easiest way to get started building a SwiftData application. With SwiftUI, you can configure your data store, change your options, enable undo, and toggle autosaving. SwiftUI will propagate your model context in its environment. Once you’ve set up, the easiest way to start using your data is the new @Query property wrapper. You can easily load and filter anything stored in your database with a single line of code. SwiftData supports the all-new observable feature for your modeled properties. SwiftUI will automatically refresh changes on any of the observed properties. SwiftUI and SwiftData work hand in hand to help you build engaging and powerful apps. Learn more about using these frameworks together in our “Build an app with SwiftData” session.</p>
+<p>想要深入了解 SwiftData 的容器和上下文以及如何操作它们，请参阅“深入了解 SwiftData”环节。SwiftData 是围绕 SwiftUI 设计的，两者的结合使用异常顺畅。SwiftUI 提供了一个最简便的途径来开始使用 SwiftData。无论是设置 SwiftData 容器、获取数据还是推动视图更新，我们都在这些框架中直接集成了相应的 API。利用新的 SwiftUI 场景和视图修饰符，你可以轻松地开始构建 SwiftData 应用。通过 SwiftUI，你不仅可以配置数据存储、更改设置、启用撤销功能、切换自动保存，还可以在其环境中传递模型上下文。一旦配置完成，利用新的 @Query 属性封装器开始使用数据将变得非常简单。你可以用一行代码就轻松加载和筛选数据库中的内容。SwiftData 还支持模型属性的全新可观察功能，SwiftUI 将自动更新所有观察到的属性变化。SwiftUI 和 SwiftData 的结合能够帮助你打造引人入胜且功能强大的应用。更多关于如何将这两个框架结合使用的信息，可以在我们的“使用 SwiftData 构建应用程序”环节中找到。</p>
+<p>SwiftData is a powerful new solution to data management, designed with first-class support for Swift’s features. It uses Swift’s new macro system to focus entirely on your code. Set up your schema using @model, and configure your persistence experience with the model container. You can easily enable persistence, undo and redo, iCloud synchronization, widget development, and more. Start building SwiftData into your apps right away by leveraging SwiftUI’s seamless integration. We’re excited to see what you build with SwiftData, and thanks for watching.</p>
+<p>SwiftData 是一个针对数据管理的强大新方案，它专门为充分利用 Swift 的特性而设计。它利用 Swift 的新宏系统，让你完全专注于编码。你可以使用 @model 来设定你的架构，并通过模型容器来定制持久化体验。你可以轻松实现数据持久化、撤销/重做操作、iCloud 同步、小部件开发等功能。通过利用 SwiftUI 的无缝集成，你可以立即开始在应用中使用 SwiftData。我们非常期待看到你使用 SwiftData 打造出的成果，感谢观看。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sakuragg.com/2024/01/03/Meet%20SwiftData/" data-id="clr8m6uj00003bl1gedll3qp1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/08/key-path-in-SwiftUI/">key path in SwiftUI</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/08/Environment%20Property%20Wrapper%20In%20SwiftUI/">Environment Property Wrapper In SwiftUI</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/03/Meet%20SwiftData/">Meet SwiftData</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 sakuragi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
