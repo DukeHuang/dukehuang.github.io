@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="NavigationEnable people  to move between different parts of app’s view hierarchy within a scene. OverviewUse navigaiton containers to provide structure to your app’s user interface, enabling people to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Navigation in SwiftUI">
+<meta property="og:url" content="http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/index.html">
+<meta property="og:site_name" content="sakuragi&#39;s blog">
+<meta property="og:description" content="NavigationEnable people  to move between different parts of app’s view hierarchy within a scene. OverviewUse navigaiton containers to provide structure to your app’s user interface, enabling people to">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-16T02:49:33.000Z">
+<meta property="article:modified_time" content="2024-01-16T03:31:55.423Z">
+<meta property="article:author" content="sakuragi">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Navigation in SwiftUI</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/01/16/List-in-SwiftUI/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/01/16/Bundle%E8%AF%A6%E8%A7%A3/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&text=Navigation in SwiftUI"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&is_video=false&description=Navigation in SwiftUI"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Navigation in SwiftUI&body=Check out this article: http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&name=Navigation in SwiftUI&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&t=Navigation in SwiftUI"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Navigation"><span class="toc-number">1.</span> <span class="toc-text">Navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-number">1.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NavigationStack"><span class="toc-number">1.2.</span> <span class="toc-text">NavigationStack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#navigationSplitViewStyle"><span class="toc-number">1.2.1.</span> <span class="toc-text">navigationSplitViewStyle(_:)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#navigationTitle"><span class="toc-number">1.2.2.</span> <span class="toc-text">navigationTitle(_:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NavigationSplitView"><span class="toc-number">1.3.</span> <span class="toc-text">NavigationSplitView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E9%99%90%E5%88%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">版本限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">如何定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-two-column-navigation-split-view-%E4%BD%BF%E7%94%A8-init-sidebar-detail-%E6%9D%A5%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">创建一个 two-column navigation split view, 使用 &#96;&#96;&#96;init(sidebar: detail:) 来初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Control-column-visibility-%E5%A6%82%E4%BD%95%E6%8E%A7%E5%88%B6%E5%88%97%E6%98%AF%E5%90%A6%E5%8F%AF%E8%A7%81"><span class="toc-number">1.3.4.</span> <span class="toc-text">Control column visibility 如何控制列是否可见</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collapsed-split-views-%E6%8A%98%E5%8F%A0%E7%9A%84%E6%8B%86%E5%88%86%E8%A7%86%E5%9B%BE"><span class="toc-number">1.3.5.</span> <span class="toc-text">Collapsed split views 折叠的拆分视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Customize-a-split-view"><span class="toc-number">1.3.6.</span> <span class="toc-text">Customize a split view</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.4.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Link"><span class="toc-number">1.5.</span> <span class="toc-text">Link</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Navigation in SwiftUI
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">sakuragi</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-16T02:49:33.000Z" class="dt-published" itemprop="datePublished">2024-01-16</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a>Navigation</h1><p>Enable people  to move between different parts of app’s view hierarchy within a scene.</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Use navigaiton containers to provide structure to your app’s user interface, enabling people to easily move among the parts of your app.</p>
+<h2 id="NavigationStack"><a href="#NavigationStack" class="headerlink" title="NavigationStack"></a>NavigationStack</h2><h3 id="navigationSplitViewStyle"><a href="#navigationSplitViewStyle" class="headerlink" title="navigationSplitViewStyle(_:)"></a>navigationSplitViewStyle(_:)</h3><h3 id="navigationTitle"><a href="#navigationTitle" class="headerlink" title="navigationTitle(_:)"></a>navigationTitle(_:)</h3><h2 id="NavigationSplitView"><a href="#NavigationSplitView" class="headerlink" title="NavigationSplitView"></a>NavigationSplitView</h2><p>一种两列视图或者三列视图显示的视图，在前面的列选择可控制后面的列的显示</p>
+<h3 id="版本限制"><a href="#版本限制" class="headerlink" title="版本限制"></a>版本限制</h3><p><code>iOS16.0+</code> <code>macOS 13.0+</code> <code>Mac Catalyst 16.0+</code> <code>tvOS 16.0+</code> <code>watchOS 9.0+</code> <code>visionOS 1.0+ Beta</code></p>
+<h3 id="如何定义"><a href="#如何定义" class="headerlink" title="如何定义"></a>如何定义</h3><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="type">NavigationSplitView</span>&lt;<span class="type">Sidebar</span>, Content, Detail&gt; <span class="built_in">where</span> Sidebar : <span class="built_in">View</span>, Contetn : <span class="built_in">View</span>, Detail : <span class="built_in">View</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><h4 id="创建一个-two-column-navigation-split-view-使用-init-sidebar-detail-来初始化"><a href="#创建一个-two-column-navigation-split-view-使用-init-sidebar-detail-来初始化" class="headerlink" title="创建一个 two-column navigation split view, 使用 ```init(sidebar: detail:) 来初始化"></a>创建一个 two-column navigation split view, 使用 ```init(sidebar: detail:) 来初始化</h4><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@State <span class="keyword">private</span> var employeeIds: Set&lt;Employee.ID&gt; = <span class="literal">[]</span></span><br><span class="line"></span><br><span class="line">var body: some View &#123;</span><br><span class="line">    NavigationSplitView &#123;</span><br><span class="line">        <span class="constructor">List(<span class="params">model</span>.<span class="params">employees</span>, <span class="params">selection</span>: $<span class="params">employeeIds</span>)</span> &#123; employee <span class="keyword">in</span> </span><br><span class="line">            <span class="constructor">Text(<span class="params">employee</span>.<span class="params">name</span>)</span></span><br><span class="line">        &#125; detail: &#123;</span><br><span class="line">            <span class="constructor">EmployeeDetail(<span class="params">for</span>: <span class="params">employeeIds</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，第一列Sidebar是用List来返回，在List的selection中是传入的一个employeeIds参数，这时需要保证是唯一标识，这各UIKit/APPKit中的UITableView采用的Indexpath标记不同，这里会直接使用DataSource Model中的唯一标识，这就要要求我们数据必须遵循Identiable协议</p>
+<h3 id="Control-column-visibility-如何控制列是否可见"><a href="#Control-column-visibility-如何控制列是否可见" class="headerlink" title="Control column visibility 如何控制列是否可见"></a>Control column visibility 如何控制列是否可见</h3><h3 id="Collapsed-split-views-折叠的拆分视图"><a href="#Collapsed-split-views-折叠的拆分视图" class="headerlink" title="Collapsed split views 折叠的拆分视图"></a>Collapsed split views 折叠的拆分视图</h3><h3 id="Customize-a-split-view"><a href="#Customize-a-split-view" class="headerlink" title="Customize a split view"></a>Customize a split view</h3><h2 id><a href="#" class="headerlink" title></a></h2><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p>wwdc2022 <a target="_blank" rel="noopener" href="https://developer.apple.com/wwdc22/10054">The SwiftUI cookbook for navigation</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Navigation"><span class="toc-number">1.</span> <span class="toc-text">Navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-number">1.1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NavigationStack"><span class="toc-number">1.2.</span> <span class="toc-text">NavigationStack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#navigationSplitViewStyle"><span class="toc-number">1.2.1.</span> <span class="toc-text">navigationSplitViewStyle(_:)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#navigationTitle"><span class="toc-number">1.2.2.</span> <span class="toc-text">navigationTitle(_:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NavigationSplitView"><span class="toc-number">1.3.</span> <span class="toc-text">NavigationSplitView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E9%99%90%E5%88%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">版本限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">如何定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-two-column-navigation-split-view-%E4%BD%BF%E7%94%A8-init-sidebar-detail-%E6%9D%A5%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">创建一个 two-column navigation split view, 使用 &#96;&#96;&#96;init(sidebar: detail:) 来初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Control-column-visibility-%E5%A6%82%E4%BD%95%E6%8E%A7%E5%88%B6%E5%88%97%E6%98%AF%E5%90%A6%E5%8F%AF%E8%A7%81"><span class="toc-number">1.3.4.</span> <span class="toc-text">Control column visibility 如何控制列是否可见</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collapsed-split-views-%E6%8A%98%E5%8F%A0%E7%9A%84%E6%8B%86%E5%88%86%E8%A7%86%E5%9B%BE"><span class="toc-number">1.3.5.</span> <span class="toc-text">Collapsed split views 折叠的拆分视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Customize-a-split-view"><span class="toc-number">1.3.6.</span> <span class="toc-text">Customize a split view</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.4.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Link"><span class="toc-number">1.5.</span> <span class="toc-text">Link</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&text=Navigation in SwiftUI"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&is_video=false&description=Navigation in SwiftUI"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Navigation in SwiftUI&body=Check out this article: http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&title=Navigation in SwiftUI"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&name=Navigation in SwiftUI&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/16/Navigation-in-SwiftUI/&t=Navigation in SwiftUI"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    sakuragi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

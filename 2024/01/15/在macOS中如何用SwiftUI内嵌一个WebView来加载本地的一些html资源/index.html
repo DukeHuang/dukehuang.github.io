@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="最近开发我的 五笔助手 for macOS的时候，想把一个开源的跟打器玫枫跟打器嵌入到我的app中，这个app是用js+html编写的，整个界面设计得很漂亮，功能很比较完善。 但是在我集成的过程中，还是遇到了一些问题，现将整个过程记录下来： macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？这是我找到的一些资料链接  东坡肘子（最近很喜欢的一个开发者，写了很多的Swift&#x2F;S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源">
+<meta property="og:url" content="http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/index.html">
+<meta property="og:site_name" content="sakuragi&#39;s blog">
+<meta property="og:description" content="最近开发我的 五笔助手 for macOS的时候，想把一个开源的跟打器玫枫跟打器嵌入到我的app中，这个app是用js+html编写的，整个界面设计得很漂亮，功能很比较完善。 但是在我集成的过程中，还是遇到了一些问题，现将整个过程记录下来： macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？这是我找到的一些资料链接  东坡肘子（最近很喜欢的一个开发者，写了很多的Swift&#x2F;S">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-15T08:37:55.000Z">
+<meta property="article:modified_time" content="2024-01-16T02:15:31.293Z">
+<meta property="article:author" content="sakuragi">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/01/16/Bundle%E8%AF%A6%E8%A7%A3/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/01/15/%E5%BE%88%E6%83%B3gap-year/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&text=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&is_video=false&description=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源&body=Check out this article: http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&name=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&t=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#macOS-SwiftUI%E6%98%AF%E5%90%A6%E6%9C%89%E5%8E%9F%E7%94%9F%E7%9A%84%E7%BB%84%E4%BB%B6%E8%83%BD%E6%94%AF%E6%8C%81%E6%88%91%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E7%9A%84web%E8%B5%84%E6%BA%90%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%BD%E5%90%A6%E7%94%A8WKWebview%E5%91%A2%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">能否用WKWebview呢？</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">sakuragi</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-15T08:37:55.000Z" class="dt-published" itemprop="datePublished">2024-01-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>最近开发我的 <code>五笔助手 for macOS</code>的时候，想把一个开源的跟打器<a target="_blank" rel="noopener" href="https://github.com/KyleBing/typepad">玫枫跟打器</a>嵌入到我的app中，这个app是用js+html编写的，整个界面设计得很漂亮，功能很比较完善。</p>
+<p>但是在我集成的过程中，还是遇到了一些问题，现将整个过程记录下来：</p>
+<h2 id="macOS-SwiftUI是否有原生的组件能支持我集成本地的web资源？"><a href="#macOS-SwiftUI是否有原生的组件能支持我集成本地的web资源？" class="headerlink" title="macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？"></a>macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？</h2><p>这是我找到的一些资料链接</p>
+<ul>
+<li>东坡肘子（最近很喜欢的一个开发者，写了很多的Swift/SwiftUI相关的文章，向他学习和致敬）：<br><a target="_blank" rel="noopener" href="https://fatbobman.com/zh/posts/open_url_in_swiftui/#swiftui-30-ios-15monterey">在 SwiftUI 视图中打开 URL 的若干方法</a></li>
+</ul>
+<ul>
+<li>Paul Hudson（非常出名的一个iOS技术分享博主，对我影响很大）:<br><a target="_blank" rel="noopener" href="https://www.hackingwithswift.com/quick-start/swiftui/how-to-open-web-links-in-safari">How to open web links in Safari</a></li>
+</ul>
+<p>他们都提到了SwiftUI中的Link组件，其中东坡肘子的文章还提到通过环境值openURL提供OpenURLAction处理代码的方式来实现自定义打开链接的行为，但是，这些都不符合我们的需求，我们是想用SwiftUI来内嵌一个webview，在webview中加载放在Bundle中的资源</p>
+<h2 id="能否用WKWebview呢？"><a href="#能否用WKWebview呢？" class="headerlink" title="能否用WKWebview呢？"></a>能否用WKWebview呢？</h2><p><a target="_blank" rel="noopener" href="https://github.com/kylehickinson/SwiftUI-WebView">https://github.com/kylehickinson/SwiftUI-WebView</a></p>
+<p>采用这种方案，能加载首页的一些资源，但是效果没对</p>
+<p>分析原因是我将html的文件夹之间互相访问的路径给改变了，导致在访问一些js，css的资源的时候报错了。<br>我们可以把这些资源打成一个bundle文件，来统一管理和保存，同时又不破坏其目录结构，从而不至于影响到他们之间的互相访问</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#macOS-SwiftUI%E6%98%AF%E5%90%A6%E6%9C%89%E5%8E%9F%E7%94%9F%E7%9A%84%E7%BB%84%E4%BB%B6%E8%83%BD%E6%94%AF%E6%8C%81%E6%88%91%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E7%9A%84web%E8%B5%84%E6%BA%90%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%BD%E5%90%A6%E7%94%A8WKWebview%E5%91%A2%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">能否用WKWebview呢？</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&text=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&is_video=false&description=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源&body=Check out this article: http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&title=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&name=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://www.sakuragg.com/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/&t=在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    sakuragi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/DukeHuang">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

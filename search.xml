@@ -4,6 +4,71 @@
   
     
     <entry>
+      <title>List in SwiftUI</title>
+      <link href="/2024/01/16/List-in-SwiftUI/"/>
+      <url>/2024/01/16/List-in-SwiftUI/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Navigation in SwiftUI</title>
+      <link href="/2024/01/16/Navigation-in-SwiftUI/"/>
+      <url>/2024/01/16/Navigation-in-SwiftUI/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a>Navigation</h1><p>Enable people  to move between different parts of app’s view hierarchy within a scene.</p><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Use navigaiton containers to provide structure to your app’s user interface, enabling people to easily move among the parts of your app.</p><h2 id="NavigationStack"><a href="#NavigationStack" class="headerlink" title="NavigationStack"></a>NavigationStack</h2><h3 id="navigationSplitViewStyle"><a href="#navigationSplitViewStyle" class="headerlink" title="navigationSplitViewStyle(_:)"></a>navigationSplitViewStyle(_:)</h3><h3 id="navigationTitle"><a href="#navigationTitle" class="headerlink" title="navigationTitle(_:)"></a>navigationTitle(_:)</h3><h2 id="NavigationSplitView"><a href="#NavigationSplitView" class="headerlink" title="NavigationSplitView"></a>NavigationSplitView</h2><p>一种两列视图或者三列视图显示的视图，在前面的列选择可控制后面的列的显示</p><h3 id="版本限制"><a href="#版本限制" class="headerlink" title="版本限制"></a>版本限制</h3><p><code>iOS16.0+</code> <code>macOS 13.0+</code> <code>Mac Catalyst 16.0+</code> <code>tvOS 16.0+</code> <code>watchOS 9.0+</code> <code>visionOS 1.0+ Beta</code></p><h3 id="如何定义"><a href="#如何定义" class="headerlink" title="如何定义"></a>如何定义</h3><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="type">NavigationSplitView</span>&lt;<span class="type">Sidebar</span>, Content, Detail&gt; <span class="built_in">where</span> Sidebar : <span class="built_in">View</span>, Contetn : <span class="built_in">View</span>, Detail : <span class="built_in">View</span></span><br></pre></td></tr></table></figure><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><h4 id="创建一个-two-column-navigation-split-view-使用-init-sidebar-detail-来初始化"><a href="#创建一个-two-column-navigation-split-view-使用-init-sidebar-detail-来初始化" class="headerlink" title="创建一个 two-column navigation split view, 使用 ```init(sidebar: detail:) 来初始化"></a>创建一个 two-column navigation split view, 使用 ```init(sidebar: detail:) 来初始化</h4><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@State <span class="keyword">private</span> var employeeIds: Set&lt;Employee.ID&gt; = <span class="literal">[]</span></span><br><span class="line"></span><br><span class="line">var body: some View &#123;</span><br><span class="line">    NavigationSplitView &#123;</span><br><span class="line">        <span class="constructor">List(<span class="params">model</span>.<span class="params">employees</span>, <span class="params">selection</span>: $<span class="params">employeeIds</span>)</span> &#123; employee <span class="keyword">in</span> </span><br><span class="line">            <span class="constructor">Text(<span class="params">employee</span>.<span class="params">name</span>)</span></span><br><span class="line">        &#125; detail: &#123;</span><br><span class="line">            <span class="constructor">EmployeeDetail(<span class="params">for</span>: <span class="params">employeeIds</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在这段代码中，第一列Sidebar是用List来返回，在List的selection中是传入的一个employeeIds参数，这时需要保证是唯一标识，这各UIKit/APPKit中的UITableView采用的Indexpath标记不同，这里会直接使用DataSource Model中的唯一标识，这就要要求我们数据必须遵循Identiable协议</p><h3 id="Control-column-visibility-如何控制列是否可见"><a href="#Control-column-visibility-如何控制列是否可见" class="headerlink" title="Control column visibility 如何控制列是否可见"></a>Control column visibility 如何控制列是否可见</h3><h3 id="Collapsed-split-views-折叠的拆分视图"><a href="#Collapsed-split-views-折叠的拆分视图" class="headerlink" title="Collapsed split views 折叠的拆分视图"></a>Collapsed split views 折叠的拆分视图</h3><h3 id="Customize-a-split-view"><a href="#Customize-a-split-view" class="headerlink" title="Customize a split view"></a>Customize a split view</h3><h2 id><a href="#" class="headerlink" title></a></h2><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p>wwdc2022 <a href="https://developer.apple.com/wwdc22/10054">The SwiftUI cookbook for navigation</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bundle详解</title>
+      <link href="/2024/01/16/Bundle%E8%AF%A6%E8%A7%A3/"/>
+      <url>/2024/01/16/Bundle%E8%AF%A6%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在macOS中如何用SwiftUI内嵌一个WebView来加载本地的一些html资源</title>
+      <link href="/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/"/>
+      <url>/2024/01/15/%E5%9C%A8macOS%E4%B8%AD%E5%A6%82%E4%BD%95%E7%94%A8SwiftUI%E5%86%85%E5%B5%8C%E4%B8%80%E4%B8%AAWebView%E6%9D%A5%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0%E7%9A%84%E4%B8%80%E4%BA%9Bhtml%E8%B5%84%E6%BA%90/</url>
+      
+        <content type="html"><![CDATA[<p>最近开发我的 <code>五笔助手 for macOS</code>的时候，想把一个开源的跟打器<a href="https://github.com/KyleBing/typepad">玫枫跟打器</a>嵌入到我的app中，这个app是用js+html编写的，整个界面设计得很漂亮，功能很比较完善。</p><p>但是在我集成的过程中，还是遇到了一些问题，现将整个过程记录下来：</p><h2 id="macOS-SwiftUI是否有原生的组件能支持我集成本地的web资源？"><a href="#macOS-SwiftUI是否有原生的组件能支持我集成本地的web资源？" class="headerlink" title="macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？"></a>macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？</h2><p>这是我找到的一些资料链接</p><ul><li>东坡肘子（最近很喜欢的一个开发者，写了很多的Swift/SwiftUI相关的文章，向他学习和致敬）：<br><a href="https://fatbobman.com/zh/posts/open_url_in_swiftui/#swiftui-30-ios-15monterey">在 SwiftUI 视图中打开 URL 的若干方法</a></li></ul><ul><li>Paul Hudson（非常出名的一个iOS技术分享博主，对我影响很大）:<br><a href="https://www.hackingwithswift.com/quick-start/swiftui/how-to-open-web-links-in-safari">How to open web links in Safari</a></li></ul><p>他们都提到了SwiftUI中的Link组件，其中东坡肘子的文章还提到通过环境值openURL提供OpenURLAction处理代码的方式来实现自定义打开链接的行为，但是，这些都不符合我们的需求，我们是想用SwiftUI来内嵌一个webview，在webview中加载放在Bundle中的资源</p><h2 id="能否用WKWebview呢？"><a href="#能否用WKWebview呢？" class="headerlink" title="能否用WKWebview呢？"></a>能否用WKWebview呢？</h2><p><a href="https://github.com/kylehickinson/SwiftUI-WebView">https://github.com/kylehickinson/SwiftUI-WebView</a></p><p>采用这种方案，能加载首页的一些资源，但是效果没对</p><p>分析原因是我将html的文件夹之间互相访问的路径给改变了，导致在访问一些js，css的资源的时候报错了。<br>我们可以把这些资源打成一个bundle文件，来统一管理和保存，同时又不破坏其目录结构，从而不至于影响到他们之间的互相访问</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>很想gap year</title>
+      <link href="/2024/01/15/%E5%BE%88%E6%83%B3gap-year/"/>
+      <url>/2024/01/15/%E5%BE%88%E6%83%B3gap-year/</url>
+      
+        <content type="html"><![CDATA[<p>不知不觉，2024后的1月已经过半。</p><p>很多计划都因为不自律而流失</p><p>自己最想改变的几件事</p><p>1.健康的身体</p><p>2.流利的英语</p><p>3.有被动收入</p><p>最自己最想做好的几方面，谈谈自己的一些思考：</p><p>1.关于健康的身体，最近走在路上，会暗自观察行人的精神状态，很羡慕那些精神面貌比较好的人，会给人一种很舒服的感觉。<br>如何才能让自己保持好的精神面貌，我觉得需要从几个方面下功夫</p><ul><li>休息，学会科学的休息</li><li>锻炼，养成习惯</li><li>吃，学习如何吃</li></ul><p>2.关于英语，语言了解这个世界最好的工具。</p><ul><li>保持慢的心态</li></ul><p>3.有被动收入</p><ul><li>能减少自己的焦虑</li></ul><ol start="4"><li>保持学习的态度</li></ol><h2 id="很讨厌上班的日子"><a href="#很讨厌上班的日子" class="headerlink" title="很讨厌上班的日子"></a>很讨厌上班的日子</h2><p>现在回想起来,上一次失业其实是一个很好的机会，在gap 3 moths的那段时间，学了自游泳，每天坚持健身。但是做错的一个决定是当时着急买了车。给自己增加了很大的经济上的压力，所以也不得不去着急去寻找下一份工作来解决经济上的压力。如果能重新去做选择，我可以会给自己一段时间，去探索独立开发这件事情，说不定现在也有一定的积累和收获了。</p><p>现在这家公司我不是很喜欢，国企单位，在公司来没有什么沉淀。工作上没什么压力，也没什么进步。说白了，是在里面混日子。唯一的一个好处是我有大把的时间来做自己想做的事情，但其实现在也是一事无成。但是也不要妄自菲薄。在这3年多的时间，经历了结婚，生小孩的事，一个不是很忙的工作，让我有精力去思考处理这些事情，中途做了两个外包工作，赚了一些外块，也是从这两次做外包痛苦的经历中，我更想去做自己的产品的想法。</p><p>曾经我觉得如果我想从一家公司离职，那么我会在这家公司做到最好，不留遗憾。现在我的想法改变了，如果这家公司的方向和企业文化和自己都不相同，那么也就没有在一起的必要了。在方向上都错了，还去努力，那只能说自己比较傻。</p><p>既然决定了，就全力以赴。</p><h2 id="最近的一些感悟"><a href="#最近的一些感悟" class="headerlink" title="最近的一些感悟"></a>最近的一些感悟</h2><p>昨天看一个比较有意思的分享，在对待孩子学习这件事情上，我们需要提前布局，比如查一下，教育部的教学大纲，从大的方向上来制定计划。</p><h2 id="最近的一些学习"><a href="#最近的一些学习" class="headerlink" title="最近的一些学习"></a>最近的一些学习</h2><p>周末看了figma的一个很基础的入门教学视频，还需要去落地实际操作。希望自己能从美学上严格要求自己，把自己的app做得非常简洁和漂亮。</p><h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><p>带孩子去了海昌极地海洋世界，老婆通过自己的热情，得到了亲吻海豚的机会，机会真的要自己去争取啊。<br>小孩最近吃手的问题，让我们都有点焦虑<br>准备看去香港的旅游攻略</p><h2 id="SideProject"><a href="#SideProject" class="headerlink" title="SideProject"></a>SideProject</h2><p>五笔助手</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>key path in SwiftUI</title>
       <link href="/2024/01/08/key-path-in-SwiftUI/"/>
       <url>/2024/01/08/key-path-in-SwiftUI/</url>
