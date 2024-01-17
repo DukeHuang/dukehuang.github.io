@@ -14,7 +14,7 @@
 <meta property="og:description" content="最近开发我的 五笔助手 for macOS的时候，想把一个开源的跟打器玫枫跟打器嵌入到我的app中，这个app是用js+html编写的，整个界面设计得很漂亮，功能很比较完善。 但是在我集成的过程中，还是遇到了一些问题，现将整个过程记录下来： macOS SwiftUI是否有原生的组件能支持我集成本地的web资源？这是我找到的一些资料链接  东坡肘子（最近很喜欢的一个开发者，写了很多的Swift&#x2F;S">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-15T08:37:55.000Z">
-<meta property="article:modified_time" content="2024-01-16T02:15:31.293Z">
+<meta property="article:modified_time" content="2024-01-16T09:58:55.779Z">
 <meta property="article:author" content="sakuragi">
 <meta name="twitter:card" content="summary">
     
@@ -169,6 +169,10 @@
 <h2 id="能否用WKWebview呢？"><a href="#能否用WKWebview呢？" class="headerlink" title="能否用WKWebview呢？"></a>能否用WKWebview呢？</h2><p><a target="_blank" rel="noopener" href="https://github.com/kylehickinson/SwiftUI-WebView">https://github.com/kylehickinson/SwiftUI-WebView</a></p>
 <p>采用这种方案，能加载首页的一些资源，但是效果没对</p>
 <p>分析原因是我将html的文件夹之间互相访问的路径给改变了，导致在访问一些js，css的资源的时候报错了。<br>我们可以把这些资源打成一个bundle文件，来统一管理和保存，同时又不破坏其目录结构，从而不至于影响到他们之间的互相访问</p>
+<p>代码可以这样写</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> url = <span class="module-access"><span class="module"><span class="identifier">Bundle</span>.</span></span>main.url(forResource: <span class="string">&quot;typepadBundle&quot;</span>, withExtension: <span class="string">&quot;bundle&quot;</span>),</span><br><span class="line">    <span class="keyword">let</span> bundle = <span class="constructor">Bundle(<span class="params">url</span>: <span class="params">url</span>)</span>,</span><br><span class="line">    <span class="keyword">let</span> path = bundle.path(forResource: <span class="string">&quot;index&quot;</span>, ofType: <span class="string">&quot;html&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> url = <span class="constructor">URL(<span class="params">filePath</span>: <span class="params">path</span>)</span></span><br><span class="line">            self.webViewStore.webView.load(<span class="constructor">URLRequest(<span class="params">url</span>: <span class="params">url</span>)</span>)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
 
   </div>
 </article>
