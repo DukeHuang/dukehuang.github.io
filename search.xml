@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>如何看工程中字体的真实Name</title>
+      <link href="/2024/03/26/%E5%A6%82%E4%BD%95%E7%9C%8B%E5%B7%A5%E7%A8%8B%E4%B8%AD%E5%AD%97%E4%BD%93%E7%9A%84%E7%9C%9F%E5%AE%9EName/"/>
+      <url>/2024/03/26/%E5%A6%82%E4%BD%95%E7%9C%8B%E5%B7%A5%E7%A8%8B%E4%B8%AD%E5%AD%97%E4%BD%93%E7%9A%84%E7%9C%9F%E5%AE%9EName/</url>
+      
+        <content type="html"><![CDATA[<p>最近在做一个APP的时候，遇到自已添加的字体在App中显示不出来的问题<br>最终排查到的原因如下：<br>字体的真实名字和字体文件的名字不相同，我错误地把字体文件名字当成了字体名字，导致在iOS系统中，该字体显示不出来，但是在macOS中是没问题。<br>我们可以通过在OnAppear方法中去调用下面的方法，来打印出我们字体的真实名字，然后在工程代码中进行统一：</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> family <span class="keyword">in</span> <span class="type">UIFont</span>.familyNames.sorted() &#123;</span><br><span class="line">    <span class="keyword">let</span> names <span class="operator">=</span> <span class="type">UIFont</span>.fontNames(forFamilyName: family)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Family: <span class="subst">\(family)</span> Font names: <span class="subst">\(names)</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Filtering and sorting persistent data in SwiftData</title>
       <link href="/2024/01/17/Filtering-and-sorting-persistent-data-in-SwiftData/"/>
       <url>/2024/01/17/Filtering-and-sorting-persistent-data-in-SwiftData/</url>
